@@ -1,4 +1,3 @@
-
 import axios from "axios";
 
 const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:3000/api";
@@ -62,6 +61,64 @@ export const commentAPI = {
   delete: (id) => api.delete(`/admin/comments/${id}`),
 };
 
+/* ADD HERE */
+export const API_URL = API_BASE.replace("/api", "");
+
+export const getImageUrl = (img) => {
+  if (!img) return "/no-image.png";
+
+  if (img.startsWith("http")) {
+    return img;
+  }
+
+  return `${API_URL}${img}`;
+};
 export default api;
 
+// import axios from "axios";
 
+// const API_BASE =
+//   process.env.REACT_APP_API_BASE ||
+//   "http://localhost:5000/api";
+
+// const api = axios.create({
+//   baseURL: API_BASE,
+// });
+
+// api.interceptors.request.use((config) => {
+//   const token = localStorage.getItem("adminToken");
+
+//   if (token) {
+//     config.headers.Authorization = `Bearer ${token}`;
+//   }
+
+//   return config;
+// });
+
+// export default api;
+
+// export const postAPI = {
+//   getAll: () => api.get("/posts"),
+
+//   getById: (id) => api.get(`/posts/${id}`),
+
+//   create: (data) =>
+//     api.post("/posts", data, {
+//       headers: {
+//         "Content-Type": "multipart/form-data",
+//       },
+//     }),
+
+//   update: (id, data) =>
+//     api.put(`/posts/${id}`, data, {
+//       headers: {
+//         "Content-Type": "multipart/form-data",
+//       },
+//     }),
+
+//   delete: (id) => api.delete(`/posts/${id}`),
+// };
+
+// export const categoryAPI = {
+//   getAll: () => api.get("/categories"),
+// };
